@@ -34,5 +34,6 @@ python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.7.txt sou
 
 ## Notes
 ### Manual editions to CellPhoneDB
-- interactions with 'IFNA1' are excluded due to inconsistent reprasentation in database, see https://github.com/JanLeipzig/ViennaCCCdb/issues/1
-
+- for 'CCL3L1' no uniprot id was given, 'P16619' was used manually
+- interactions with 'IFNA*' genes are excluded since no uniprot ids were given in 'protein_input.csv', see https://github.com/JanLeipzig/ViennaCCCdb/issues/1
+- interactions with 'HLA' genes are excluded since no uniprot ids were given in 'protein_input.csv' possibly due to them beeing manually curated. Manual uniprot ids would have to be consistent with liana consensus.
