@@ -34,7 +34,5 @@ python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.7.txt sou
 
 ## Notes
 ### Manual editions to CellPhoneDB
-- interactions with 'IFNA1' are excluded due to inconsistent reprasentation in database [bug] ([#1][i1])
+- interactions with 'IFNA1' are excluded due to inconsistent reprasentation in database, see https://github.com/JanLeipzig/ViennaCCCdb/issues/1
 
-
-[i1]:  [bug] Finally fixed this stupid bug ([#19][i19])
