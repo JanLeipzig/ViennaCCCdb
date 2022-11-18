@@ -31,3 +31,10 @@ python scripts/convert_customData_to_LianaFormat.py source_database/interaction_
 ```
 python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.7.txt source_databases/cpdb_lianaformat.txt source_databases/customData_lianaformat.txt source_databases/gene_conversion-AH104864.csv > ViennaCCCdb.csv
 ```
+
+## Notes
+### Manual editions to CellPhoneDB
+- interactions with 'IFNA1' are excluded due to inconsistent reprasentation in database [bug] ([#1][i1])
+
+
+[i1]:  [bug] Finally fixed this stupid bug ([#19][i19])
