@@ -1,6 +1,6 @@
 # ViennaCCCdb
 
-some info...
+Combination of three existing cell-cell communication databases, i.e. Liana Consensus database v0.1.7, CellPhoneDB v4 and a manual selection based on Pavlicev et al. 2017. If an interaction exists in more than one database it is included only once.
 
 ## Methods
 ### Download source data
@@ -36,4 +36,4 @@ python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.7.txt sou
 ### Manual editions to CellPhoneDB
 - for 'CCL3L1' no uniprot id was given, 'P16619' was used manually
 - interactions with 'IFNA*' genes are excluded since no uniprot ids were given in 'protein_input.csv', see https://github.com/JanLeipzig/ViennaCCCdb/issues/1
-- interactions with 'HLA' genes are excluded since no uniprot ids were given in 'protein_input.csv' possibly due to them beeing manually curated. Manual uniprot ids would have to be consistent with liana consensus.
+- interactions with 'HLA' genes are excluded since no uniprot ids were given in 'protein_input.csv' possibly due to them beeing manually curated. Manual uniprot ids would have to be consistent with liana consensus
