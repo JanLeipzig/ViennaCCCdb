@@ -31,7 +31,7 @@ def interactionExists(interactions,new):
             exists=True
     return exists
 
-print("#version 0.1")
+#print("#version 0.1")
 
 liana_data=sys.argv[1]
 cpdb_data=sys.argv[2]

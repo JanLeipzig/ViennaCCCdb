@@ -80,28 +80,30 @@ with open(cpdb_inter) as f:
                 proteinA="P16619"
             if(proteinB=="CCL3L1"):
                 proteinB="P16619"
-            
-            if((len(proteinA)!=6) or (proteinA in notUNIPROTS)):
 
-                if proteinA in cpdb_complex_dict:
-                    
+            #protein A is complex
+            if((len(proteinA)!=6) or (proteinA in notUNIPROTS)):
+                if proteinA in cpdb_complex_dict:                    
                     A=cpdb_complex_dict[proteinA]
-                    A_rec=cpdb_complex_dict_rec[proteinA]
-                    
+                    A_rec=cpdb_complex_dict_rec[proteinA]                    
                 else:
                     warnings.warn("Warning: "+proteinA+" was not found in complexes")
+
+            #protein A is simple
             else:
                 A=[proteinA]
                 A_rec=cpdb_simple_dict_rec[proteinA]
                 
+
+            #protein B is complex                
             if((len(proteinB)!=6) or (proteinB in notUNIPROTS)):
-                #B_compl=1
-                if proteinB in cpdb_complex_dict:
-                      
+                if proteinB in cpdb_complex_dict:                     
                     B=cpdb_complex_dict[proteinB]                      
                     B_rec=cpdb_complex_dict_rec[proteinB]
                 else:
                     warnings.warn("Warning: "+proteinB+"was not found in complexes")
+
+            #protein B is simple
             else:
                 B=[proteinB]
                 B_rec=cpdb_simple_dict_rec[proteinB]
