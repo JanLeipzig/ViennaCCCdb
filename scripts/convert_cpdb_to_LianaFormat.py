@@ -13,6 +13,7 @@ cpdb_dir=sys.argv[1]
 cpdb_inter=cpdb_dir+"/data/interaction_input.csv"
 cpdb_complex=cpdb_dir+"/data/complex_input.csv"
 cpdb_protein=cpdb_dir+"/data/protein_input.csv"
+cpdb_gene_input=cpdb_dir+"/data/gene_input.csv"
 
 
 #Read in cpdb data
@@ -59,6 +60,20 @@ with open(cpdb_protein) as f:
         
         if not("protein_name" in line):
             cpdb_simple_dict_rec[l[0]]=l[7]
+
+#parses cpdb_v4.0.0/data/gene_input_all.csv to get uniprot to gene_name mapping
+cpdb_genenames={}
+with open(cpdb_gene_input) as f:
+    for line in f:
+        if not("gene_name" in line):
+            line=line.rstrip()
+            l=line.split(",")
+
+            uniprot=l[1]
+            gene_name=l[0]
+            cpdb_genenames[uniprot]=gene_name
+
+
             
 #parses cpdb_v4.0.0/data/interaction_input.csv to process the actual interactions
 with open(cpdb_inter) as f:
@@ -135,16 +150,36 @@ with open(cpdb_inter) as f:
 for inter in all_interactions:
     L=inter[0]
     R=inter[1]
+    inter_uniprot=""
+    inter_genes=""
     
     if(len(L)==1):
-        print(L[0],end="\t")
+        #print(L[0],end="\t")
+        inter_uniprot=L[0]+"\t"
+        inter_genes=cpdb_genenames[L[0]]+"\t"
     else:
-        print("COMPLEX:"+"_".join(L),end="\t")
+        #print("COMPLEX:"+"_".join(L),end="\t")
+        inter_uniprot="COMPLEX:"+"_".join(L)+"\t"
+
+        L_genes=[]
+        for l in L:
+            L_genes.append(cpdb_genenames[l])        
+        inter_genes="COMPLEX:"+"_".join(L_genes)+"\t"
         
     if(len(R)==1):
-        print(R[0])
+        #print(R[0])
+        inter_uniprot+=R[0]
+        inter_genes+=cpdb_genenames[R[0]]
     else:
-        print("COMPLEX:"+"_".join(R))
+        #print("COMPLEX:"+"_".join(R))
+        inter_uniprot+="COMPLEX:"+"_".join(R)
+
+        R_genes=[]
+        for r in R:
+            R_genes.append(cpdb_genenames[r])        
+        inter_genes+="COMPLEX:"+"_".join(R_genes)
+
+    print(inter_uniprot+"\t"+inter_genes)
         
 
         
