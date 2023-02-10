@@ -80,37 +80,65 @@ with open(m_data) as f:
                 
             if(R in geneName_anyUniprot):
                 R_uni=geneName_anyUniprot[R]
-               
-            # if L in name_to_id:
-            #     L_ids=name_to_id[L]
-            #     l_len=len(L_ids)
-            
-            # if R in name_to_id:
-            #     R_ids=name_to_id[R]
-            #     r_len=len(R_ids)
-            
-            # #print(l_len,r_len,name_to_id["ACER2"])
-            
-            # if(l_len>0 and r_len>0):
-            #     for L in L_ids:
-            #         for R in R_ids:
-            #             print(L,R)
-                        
-            mihaela_interactions.append([[L_uni],[R_uni]])
-            
-            #print(L_uni,R_uni)
-#print(len(mihaela_interactions))
+
+            mihaela_interactions.append([[L_uni],[R_uni],L,R])
+
 for inter in mihaela_interactions:
     L=inter[0]
     R=inter[1]
+    L_gene=inter[2]
+    R_gene=inter[3]
+    inter_uniprot=""
+    inter_genes=""
     
     if(len(L)==1):
-        print(L[0],end="\t")
-    else:
-        print("COMPLEX:"+"_".join(L),end="\t")
+        #print(L[0],end="\t")
+        inter_uniprot=L[0]+"\t"
+        inter_genes=L_gene+"\t"
+        
+    #TODO: Currently no COMPLEXES in this kind of data
+    ###else:
+    ###    #print("COMPLEX:"+"_".join(L),end="\t")
+    ###    inter_uniprot="COMPLEX:"+"_".join(L)+"\t"
+    ###
+    ###    L_genes=[]
+    ###    for l in L:
+    ###        L_genes.append(cpdb_genenames[l])        
+    ###    inter_genes="COMPLEX:"+"_".join(L_genes)+"\t"
         
     if(len(R)==1):
-        print(R[0])
-    else:
-        print("COMPLEX:"+"_".join(R))
+        #print(R[0])
+        inter_uniprot+=R[0]
+        inter_genes+=R_gene
+
+    #TODO: Currently no COMPLEXES in this kind of data
+    #else:
+    #    #print("COMPLEX:"+"_".join(R))
+    #    inter_uniprot+="COMPLEX:"+"_".join(R)
+    #
+    #    R_genes=[]
+    #    for r in R:
+    #        R_genes.append(cpdb_genenames[r])        
+    #    inter_genes+="COMPLEX:"+"_".join(R_genes)
+
+    print(inter_uniprot+"\t"+inter_genes)
+        
+
+            
+#for inter in mihaela_interactions:
+#    L=inter[0]
+#    R=inter[1]
+#    L_gene=inter[2]
+#    R_gene=inter[3]
+#    
+#    if(len(L)==1):
+#        print(L[0],end="\t")
+#        
+#    else:
+#        print("COMPLEX:"+"_".join(L),end="\t")
+#        
+#    if(len(R)==1):
+#        print(R[0])
+#    else:
+#        print("COMPLEX:"+"_".join(R))
              

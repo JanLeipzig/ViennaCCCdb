@@ -24,7 +24,7 @@ https://gitlab.com/wandplabs/ligrec-enzymes
 ```
 python scripts/convert_cpdb_to_LianaFormat.py source_databases/cpdb_v4.0.0/ > cpdb_lianaformat.txt
 
-python scripts/convert_customData_to_LianaFormat.py source_database/interaction_input_CellChatDB.csv source_databases/gene_conversion-AH104864.csv > customData_lianaformat.txt
+python scripts/convert_customData_to_LianaFormat.py source_databases/interaction_input_CellChatDB.csv source_databases/gene_conversion-AH104864.csv > customData_lianaformat.txt
 ```
 
 ### Create combined database
