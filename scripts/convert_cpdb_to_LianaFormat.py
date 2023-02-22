@@ -5,7 +5,7 @@ Created on Tue Oct 25 16:42:21 2022
 
 @author: engelhardt
 """
-import sys, warnings
+import sys, warnings, csv
 
 #Location of cellphoneDB database on file system, e.g. '/home/user/cpdb_v4.0.0/'
 cpdb_dir=sys.argv[1]
@@ -21,7 +21,14 @@ cpdb_gene_input=cpdb_dir+"/data/gene_input.csv"
 notUNIPROTS=['GMCSFR']
 
 cpdb_complex_dict={}
+
 cpdb_complex_dict_rec={}
+cpdb_simple_dict_rec={}
+
+cpdb_anno={}
+#cpdb_simple_anno={}
+
+
 
 cpdb_interactions={}
 all_interactions=[]
@@ -38,8 +45,11 @@ with open(cpdb_complex) as f:
     for line in f:
         if not("complex_name" in line):
             line=line.rstrip()
-            l=line.split(",")
-
+            #l=line.split(",")
+            
+            line=line.splitlines()
+            l=list(csv.reader(line, quotechar='"', delimiter=',',quoting=csv.QUOTE_ALL, skipinitialspace=True))[0]
+            
             proteinArts=[]
             
             for i in range(4):
@@ -47,19 +57,48 @@ with open(cpdb_complex) as f:
                 if(comp!=""):
                     proteinArts.append(comp)
             proteinArts.sort()
+            
             cpdb_complex_dict[l[0]]=proteinArts
-            cpdb_complex_dict_rec[l[0]]=l[10]     
+            cpdb_complex_dict_rec[l[0]]=l[10]
+            annotation="na"
+            if("_by" in l[0]):
+                molecule=l[0].split("_by")[0]
+                annotation="Small Molecule-Mediated: "+molecule
+                print(annotation)
+
+                
+            
+            #transmembrane,peripheral,secreted,integrin,other,other_desc
+            cpdb_anno[l[0]]=[l[5],l[6],l[7],l[12],l[13],l[14],annotation]
+            
+ 
+#sys.exit()
+#Potential annotations    Interesting?
+# transmembrane $l[5]     Yes $l[5]
+# peripheral              Yes $l[6]
+# secreted                Yes $l[7]
+# secreted_desc           No
+# secreted_highlight      No
+# receptor $l[10]         No ($l[10])
+# receptor_desc           No
+# integrin                Yes $l[12]
+# other                   Yes $l[13]
+# other_desc              Yes $l[14]
+# tag                     No
+# tags_reason             No
+# tags_description        No
                         
 #parses cpdb_v4.0.0/data/protein_input.csv to get receptor annotation
 #cpdb_protein_dict_rec -protein_id : Receptor[True/False]
-cpdb_simple_dict_rec={}
 with open(cpdb_protein) as f:
     for line in f:
         line=line.rstrip()
         l=line.split(",")
         
         if not("protein_name" in line):
-            cpdb_simple_dict_rec[l[0]]=l[7]
+            cpdb_simple_dict_rec[l[0]]=l[7]            
+            #transmembrane,peripheral,secreted,integrin,other,other_desc
+            cpdb_anno[l[0]]=[l[2],l[3],l[4],l[9],l[10],l[11],"na"]
 
 #parses cpdb_v4.0.0/data/gene_input_all.csv to get uniprot to gene_name mapping
 cpdb_genenames={}
@@ -142,16 +181,31 @@ with open(cpdb_inter) as f:
                 pass
                 unclearReceptors+=1
  
+#TODO: Somehow small molecule interactions are missing!!! 02/15/2023 CONTINUE HERE
+    
+ 
+    
+ 
 ##Summary statistics                
 #Should be 2171 interactions
 #858 interactions are not used due to unclear receptor status
 #print(len(all_interactions))    
 #print(unclearReceptors)
+
+print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\tsource_db\ttransmembrane\tperipheral\tsecreted\tintegrin\tother\tother_desc\tSmall_Molecule\ttransmembrane\tperipheral\tsecreted\tintegrin\tother\tother_desc\tSmall_Molecule")
+source_db="CellPhoneDB_v4"
+pathway="na"
+annotation="na"
+
 for inter in all_interactions:
     L=inter[0]
     R=inter[1]
     inter_uniprot=""
     inter_genes=""
+    #print(L,type(L))
+    L_anno="\t".join(cpdb_anno[L[0]])
+    R_anno="\t".join(cpdb_anno[R[0]])
+    
     
     if(len(L)==1):
         #print(L[0],end="\t")
@@ -179,4 +233,4 @@ for inter in all_interactions:
             R_genes.append(cpdb_genenames[r])        
         inter_genes+="COMPLEX:"+"_".join(R_genes)
 
-    print(inter_uniprot+"\t"+inter_genes)
+    print(inter_genes+"\t"+inter_uniprot+"\t"+source_db+"\t"+L_anno+"\t"+R_anno)

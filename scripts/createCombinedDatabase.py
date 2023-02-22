@@ -61,24 +61,26 @@ with open(liana_data) as f:
         if not ("source_genesymbol" in line):
             line=line.rstrip()
             l=line.split(" ")
-            L=l[1][1:-1]
-            R=l[2][1:-1]
+            #L=l[1][1:-1] uniprot
+            #R=l[2][1:-1] uniprot
+            
+            L=l[3][1:-1] #gene name
+            R=l[4][1:-1] #gene name
                        
-            if("COMPLEX" in L):
+            #if("COMPLEX" in L): #uniprot
+            if("_" in L): #gene name
                 #Ligand is complex
-                #DEPR L_compl=1
-                L=L[8:]
+                #L=L[8:] #uniprot
                 L=L.split("_")
                 L.sort()
-                #L=','.join(L)
             else:
             #Ligand is not complex 
                 L=[L]
                 
-            if("COMPLEX" in R):
+            #if("COMPLEX" in R): #uniprot
+            if("_" in R): #gene name
                 #Receptor is complex
-                #DEPR R_compl=1
-                R=R[8:]
+                #R=R[8:] #uniprot
                 R=R.split("_")
                 R.sort()
                 #R=','.join(R)
@@ -100,29 +102,30 @@ with open(cpdb_data) as f:
         if not ("source_genesymbol" in line):
             line=line.rstrip()
             l=line.split("\t")
-            L=l[0]
-            R=l[1]
+            #L=l[0] #uniprot
+            #R=l[1] #uniprot
+            
+            L=l[2] #gene name
+            R=l[3] #gene name
                        
-            if("COMPLEX" in L):
+            #if("COMPLEX" in L):
+            if("_" in L):
                 #Ligand is complex
-                #DEPR L_compl=1
-                L=L[8:]
+                #L=L[8:]
                 L=L.split("_")
                 L.sort()
-                #L=','.join(L)
-                #print(L)
                 
             else:
             #Ligand is not complex 
                 L=[L]
                 
-            if("COMPLEX" in R):
+            #if("COMPLEX" in R):
+            if("_" in R):
                 #Receptor is complex
-                #DEPR R_compl=1
-                R=R[8:]
+                #R=R[8:]
                 R=R.split("_")
                 R.sort()
-                #R=','.join(R)
+
             else:
             #Receptor is not complex
                 R=[R]                           
@@ -140,27 +143,30 @@ with open(mihaela_data) as f:
         if not ("source_genesymbol" in line):
             line=line.rstrip()
             l=line.split("\t")
-            L=l[0]
-            R=l[1]
-                       
-            if("COMPLEX" in L):
+            #L=l[0] #uniprot
+            #R=l[1] #uniprot
+            
+            L=l[2] #gene name
+            R=l[3] #gene name
+             
+            
+            #if("COMPLEX" in L):
+            if("_" in L):
                 #Ligand is complex
-                L=L[8:]
+                #L=L[8:]
                 L=L.split("_")
                 L.sort()
-                #L=','.join(L)
                 
             else:
             #Ligand is not complex 
                 L=[L]
                 
-            if("COMPLEX" in R):
+            #if("COMPLEX" in R):
+            if("_" in R):
                 #Receptor is complex
-                #DEPR R_compl=1
-                R=R[8:]
+                #R=R[8:]
                 R=R.split("_")
                 R.sort()
-                #R=','.join(R)
             else:
             #Receptor is not complex 
                 R=[R]                           
@@ -367,35 +373,37 @@ for inter in all_interactions:
     
 
 #Print the combined database
-print("source\ttarget\tsource_genesymbol\ttarget_genesymbol")
+#print("source\ttarget\tsource_genesymbol\ttarget_genesymbol")
+print("source_genesymbol\ttarget_genesymbol\tsource_db")
 
 for i,inter in enumerate(all_interactions):
     L=inter[0]
     R=inter[1]
+    #print(i, L, R,len(L),len(R))
     
-    if(geneName_interactions[i]!="NA"):
-        if(len(L)==1):
-            print(L[0],end="\t")
-        else:
-            print("COMPLEX:"+"_".join(L),end="\t")
-            
-        if(len(R)==1):
-            print(R[0],end="\t")
-        else:
-            print("COMPLEX:"+"_".join(R),end="\t")
-         
-        Lg=geneName_interactions[i][0]    
-        Rg=geneName_interactions[i][1]
+    #if(geneName_interactions[i]!="NA"):
+    if(len(L)==1):
+        print(L[0],end="\t")
+    else:
+        print("COMPLEX:"+"_".join(L),end="\t")
         
-        if(len(Lg)==1):
-            print(Lg[0],end="\t")
-        else:
-            print("_".join(Lg),end="\t")
-            
-        if(len(Rg)==1):
-            print(Rg[0],end="\n")
-        else:
-            print("_".join(Rg),end="\n")
+    if(len(R)==1):
+        print(R[0],end="\tna\n")
+    else:
+        print("COMPLEX:"+"_".join(R),end="\tna\n")
+     
+    # Lg=geneName_interactions[i][0]    
+    # Rg=geneName_interactions[i][1]
+    
+    # if(len(Lg)==1):
+    #     print(Lg[0],end="\t")
+    # else:
+    #     print("_".join(Lg),end="\t")
+        
+    # if(len(Rg)==1):
+    #     print(Rg[0],end="\n")
+    # else:
+    #     print("_".join(Rg),end="\n")
 
 
 
