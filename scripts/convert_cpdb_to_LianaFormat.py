@@ -45,7 +45,6 @@ with open(cpdb_complex) as f:
     for line in f:
         if not("complex_name" in line):
             line=line.rstrip()
-            #l=line.split(",")
             
             line=line.splitlines()
             l=list(csv.reader(line, quotechar='"', delimiter=',',quoting=csv.QUOTE_ALL, skipinitialspace=True))[0]
@@ -63,10 +62,8 @@ with open(cpdb_complex) as f:
             annotation="na"
             if("_by" in l[0]):
                 molecule=l[0].split("_by")[0]
-                annotation="Small Molecule-Mediated: "+molecule
-                print(annotation)
-
-                
+                annotation="Small_Molecule-Mediated: "+molecule
+                #print(annotation)
             
             #transmembrane,peripheral,secreted,integrin,other,other_desc
             cpdb_anno[l[0]]=[l[5],l[6],l[7],l[12],l[13],l[14],annotation]
@@ -181,9 +178,7 @@ with open(cpdb_inter) as f:
                 pass
                 unclearReceptors+=1
  
-#TODO: Somehow small molecule interactions are missing!!! 02/15/2023 CONTINUE HERE
-    
- 
+#TODO: Small molecule interactions are missing!!! 02/15/2023 CONTINUE HERE
     
  
 ##Summary statistics                
@@ -192,7 +187,7 @@ with open(cpdb_inter) as f:
 #print(len(all_interactions))    
 #print(unclearReceptors)
 
-print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\tsource_db\ttransmembrane\tperipheral\tsecreted\tintegrin\tother\tother_desc\tSmall_Molecule\ttransmembrane\tperipheral\tsecreted\tintegrin\tother\tother_desc\tSmall_Molecule")
+print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\tsource_db\tsource_transmembrane\tsource_peripheral\tsource_secreted\tsource_integrin\tsource_other\tsource_other_desc\tsource_Small_Molecule\ttarget_transmembrane\ttarget_peripheral\ttarget_secreted\ttarget_integrin\ttarget_other\ttarget_other_desc\ttarget_Small_Molecule")
 source_db="CellPhoneDB_v4"
 pathway="na"
 annotation="na"
