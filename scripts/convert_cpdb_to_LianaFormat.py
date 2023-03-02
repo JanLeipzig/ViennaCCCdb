@@ -7,6 +7,11 @@ Created on Tue Oct 25 16:42:21 2022
 """
 import sys, warnings, csv
 
+#TODO: General problem with this version of the script
+#cpdb_simple_dict_rec assumes uniprot but we use gene name
+#Example: PTPRC
+#Solution: Maybe try to make code simpler in general
+
 #Location of cellphoneDB database on file system, e.g. '/home/user/cpdb_v4.0.0/'
 cpdb_dir=sys.argv[1]
 
@@ -169,13 +174,13 @@ with open(cpdb_inter) as f:
             #TODO: Only works if ligand is a single protein
             #R-L
             if(A_rec=="True" and B_rec=="False"):
-                pass
+                #pass
                 all_interactions.append([B,A])
             elif(B_rec=="True" and A_rec=="False"):
-                pass
+                #pass
                 all_interactions.append([A,B])
             else:
-                pass
+                #pass
                 unclearReceptors+=1
  
 #TODO: Small molecule interactions are missing!!! 02/15/2023 CONTINUE HERE
