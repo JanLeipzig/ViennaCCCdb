@@ -136,8 +136,8 @@ GDF5	COMPLEX:BMPR1B_ACVR2B	P43026	COMPLEX:O00238_Q13705	CellPhoneDB_v4	True	Fals
 GDF6	COMPLEX:BMPR1B_ACVR2B	Q6KF10	COMPLEX:O00238_Q13705	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 GDF7	COMPLEX:BMPR1B_ACVR2B	Q7Z4P5	COMPLEX:O00238_Q13705	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 BMP8A	COMPLEX:BMPR1B_ACVR2B	Q7Z5Y6	COMPLEX:O00238_Q13705	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
-CCL3L3	CCR1	P16619	P32246	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
-CCL3L3	CCR3	P16619	P51677	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
+CCL3L1	CCR1	CCL3L1	P32246	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
+CCL3L1	CCR3	CCL3L1	P51677	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 LCK	COMPLEX:CD8A_CD8B	P06239	COMPLEX:P01732_P10966	CellPhoneDB_v4	True	False	False	False	False		na	True	False	True	False	False		na
 CNTF	COMPLEX:CNTFR_IL6ST_LIFR	P26441	COMPLEX:P26992_P40189_P42702	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 CLCF1	COMPLEX:CNTFR_IL6ST_LIFR	Q9UBD9	COMPLEX:P26992_P40189_P42702	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na

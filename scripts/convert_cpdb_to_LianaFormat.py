@@ -41,7 +41,7 @@ all_interactions=[]
 unclearReceptors=0
 #parses cpdb_v4.0.0/data/complex_input.csv to get information
 #about the complexes stored in cpdb
-#cpdb_complex_dict - complex_name : complex_proteinArts
+#cpdb_complex_dict - complex_name : complex_proteinParts
 #cpdb_complex_dict_rec - complex_name : Receptor[True/False]
 
 #TODO: Maybe save small molecule ligand name (_by)
@@ -54,16 +54,21 @@ with open(cpdb_complex) as f:
             line=line.splitlines()
             l=list(csv.reader(line, quotechar='"', delimiter=',',quoting=csv.QUOTE_ALL, skipinitialspace=True))[0]
             
-            proteinArts=[]
+            proteinParts=[]
             
+            #Cpdb complexes have up t to four proteins, this loop checks the respecitive columns
+            #All available proteins will be added to proteinParts list
             for i in range(4):
                 comp=l[i+1]
                 if(comp!=""):
-                    proteinArts.append(comp)
-            proteinArts.sort()
+                    proteinParts.append(comp)
+            proteinParts.sort()
             
-            cpdb_complex_dict[l[0]]=proteinArts
+            #Dictionary with key:complex_name(str), value: proteinParts(list) is filled
+            cpdb_complex_dict[l[0]]=proteinParts
+            #similiar dict but saves if the complex is a receptor True/False
             cpdb_complex_dict_rec[l[0]]=l[10]
+            
             annotation="na"
             if("_by" in l[0]):
                 molecule=l[0].split("_by")[0]
@@ -132,10 +137,10 @@ with open(cpdb_inter) as f:
 
             #Presumably database error in cpdbv4
             #Gene name is given instead of uniprot-id
-            if(proteinA=="CCL3L1"):
-                proteinA="P16619"
-            if(proteinB=="CCL3L1"):
-                proteinB="P16619"
+            #if(proteinA=="CCL3L1"):
+            #    proteinA="P16619"
+            #if(proteinB=="CCL3L1"):
+            #    proteinB="P16619"
 
             #protein A is complex
             if((len(proteinA)!=6) or (proteinA in notUNIPROTS)):

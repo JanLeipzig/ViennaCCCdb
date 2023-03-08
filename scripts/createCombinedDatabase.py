@@ -132,9 +132,11 @@ with open(cpdb_data) as f:
             R_str="_".join(R)
       
             if(L_str+"-"+R_str in interactions_db):
-                interactions_db[L_str+"-"+R_str]+="/Cpdb_v4"
+                interactions_db[L_str+"-"+R_str]+=";Cpdb_v4"
             else:
                 interactions_db[L_str+"-"+R_str]="Cpdb_v4"
+                
+            #print(interactions_db[L_str+"-"+R_str])
 
         
 
@@ -180,9 +182,9 @@ with open(mihaela_data) as f:
             R_str="_".join(R)
       
             if(L_str+"-"+R_str in interactions_db):
-                interactions_db[L_str+"-"+R_str]+="/MihaelaXXX"
+                interactions_db[L_str+"-"+R_str]+=";Mihaela2017"
             else:
-                interactions_db[L_str+"-"+R_str]="MihaelaXXX"
+                interactions_db[L_str+"-"+R_str]="Mihaela2017"
 
 
 ##Some summary statictics and debugging stuff
@@ -293,7 +295,7 @@ for i,inter in enumerate(all_interactions):
         print("COMPLEX:"+"_".join(L),end="\t")
         
     if(len(R)==1):
-        print(R[0],end="\tna\n")
+        print(R[0],end="\t"+db+"\n")
     else:
         print("COMPLEX:"+"_".join(R),end="\t"+db+"\n")
 
