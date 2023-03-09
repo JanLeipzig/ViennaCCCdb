@@ -53,6 +53,7 @@ all_interactions_liana=[]
 all_interactions_cpdb=[]
 all_interactions_mihaela=[]
 interactions_db={}
+interactions_uniprot={}
 
 #Read in Liana data
 liana_interactions={}
@@ -89,7 +90,27 @@ with open(liana_data) as f:
             L_str="_".join(L)
             R_str="_".join(R)
             
-            interactions_db[L_str+"-"+R_str]="Liana_v0.1.7"
+            interactions_db[L_str+"-"+R_str]="Liana_v0.1.7"           
+            
+            L_uni=l[1][1:-1]
+            R_uni=l[2][1:-1]
+            
+            if("COMPLEX" in L_uni):
+                L_uni=L_uni[8:]
+                L_uni=L_uni.split("_")
+                L_uni.sort()
+                #L_uni="_".join(L_uni)
+                
+            if("COMPLEX" in R_uni):
+                R_uni=R_uni[8:]
+                R_uni=R_uni.split("_")
+                R_uni.sort()
+                #R_uni="_".join(R_uni)
+                
+            #L_uni="_".join([L_uni])
+            #print(L_uni)
+            interactions_uniprot[L_str+"-"+R_str]=[L_uni,R_uni]
+                        
             
 #Read in cpdb data
 with open(cpdb_data) as f:
@@ -103,9 +124,12 @@ with open(cpdb_data) as f:
             #if("COMPLEX" in L):
             if("_" in L):
                 #Ligand is complex
-                #L=L[8:]
+                L=L[8:]
+                #print(L)
+                #sys.exit()
                 L=L.split("_")
                 L.sort()
+                #L_uni="_".join(L_uni)
                 
             else:
             #Ligand is not complex 
@@ -114,7 +138,7 @@ with open(cpdb_data) as f:
             #if("COMPLEX" in R):
             if("_" in R):
                 #Receptor is complex
-                #R=R[8:]
+                R=R[8:]
                 R=R.split("_")
                 R.sort()
 
@@ -136,8 +160,42 @@ with open(cpdb_data) as f:
             else:
                 interactions_db[L_str+"-"+R_str]="Cpdb_v4"
                 
-            #print(interactions_db[L_str+"-"+R_str])
+                
+            L_uni=l[2][:]
+            R_uni=l[3][:]      
+                
+            if("COMPLEX" in L_uni):
+                L_uni=L_uni[8:]
+                L_uni=L_uni.split("_")
+                L_uni.sort()
+            #else:
+            #    L_uni=[L_uni]
+                
+                
+            if("COMPLEX" in R_uni):
+                R_uni=R_uni[8:]
+                R_uni=R_uni.split("_")
+                R_uni.sort()
+            #else:
+            #    R_uni=[R_uni]
+                
+            # print(L_uni)
+            # print(R_uni)
+            # sys.exit()             
 
+            if not(L_str+"-"+R_str in interactions_uniprot):
+                interactions_uniprot[L_str+"-"+R_str]=[L_uni,R_uni]                     
+            else:
+                if((interactions_uniprot[L_str+"-"+R_str][0] != L_uni) or (interactions_uniprot[L_str+"-"+R_str][1] != R_uni)):
+                    # print("ERROR")
+                    # print(L_str,R_str,interactions_uniprot[L_str+"-"+R_str][0],interactions_uniprot[L_str+"-"+R_str][1])
+                    # print(L_str,R_str,L_uni,R_uni)
+                                       
+                    #interactions_uniprot[L_str+"-"+R_str]=["CONFLICTING:"+interactions_uniprot[L_str+"-"+R_str][0]+";"+L_uni,"CONFLICTING:"+interactions_uniprot[L_str+"-"+R_str][1]+";"+R_uni]
+                    interactions_uniprot[L_str+"-"+R_str]=["CONFLICTING","CONFLICTING"]
+                
+                    #print(interactions_uniprot[L_str+"-"+R_str])
+                
         
 
 liana_cpdb_number=len(all_interactions)
@@ -275,27 +333,54 @@ with open(mihaela_data) as f:
 
 #Print the combined database
 #print("source\ttarget\tsource_genesymbol\ttarget_genesymbol")
-print("source_genesymbol\ttarget_genesymbol\tsource_db")
+print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\t\tdatabase")
 
 for i,inter in enumerate(all_interactions):
     L=inter[0]
     R=inter[1]
-    db="na"
     
     #Access the source database for each interaction
     L_str="_".join(L)
     R_str="_".join(R)
-      
+    
+    
+    if(L_str+"-"+R_str in interactions_uniprot):
+        L_uni=interactions_uniprot[L_str+"-"+R_str][0]
+        R_uni=interactions_uniprot[L_str+"-"+R_str][1]
+    else:
+        L_uni="na"
+        R_uni="na"
+         
+    db="na"        
     if(L_str+"-"+R_str in interactions_db):
         db=interactions_db[L_str+"-"+R_str]
         
+    line=""
     if(len(L)==1):
-        print(L[0],end="\t")
+        #print(L[0],end="\t")
+        line+=L[0]+"\t"
     else:
-        print("COMPLEX:"+"_".join(L),end="\t")
+        line+="COMPLEX:"+"_".join(L)+"\t"
+        #print("COMPLEX:"+"_".join(L),end="\t")
         
     if(len(R)==1):
-        print(R[0],end="\t"+db+"\n")
+        #print(R[0],end="\t"+db+"\n")
+        line+=R[0]+"\t"        
     else:
-        print("COMPLEX:"+"_".join(R),end="\t"+db+"\n")
+        #print("COMPLEX:"+"_".join(R),end="\t")
+        line+="COMPLEX:"+"_".join(R)+"\t"
+        
+    if(type(L_uni)== str):
+        line+=L_uni+"\t"
+    else:
+        line+="COMPLEX:"+"_".join(L_uni)+"\t"
+        
+    if(type(R_uni)== str):        
+        line+=R_uni+"\t"      
+    else:
+        line+="COMPLEX:"+"_".join(R_uni)+"\t"
+   
+    line+=db
+    
+    print(line)
 

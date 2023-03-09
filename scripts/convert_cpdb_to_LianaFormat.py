@@ -128,7 +128,9 @@ with open(cpdb_inter) as f:
         #TODO: Maybe handle HLA's, IFNA1 and '_by' things differently
         #HLA removed due to 'weird(?)' manual annotation
         #IFNA1 removed since no uniprot id for it is givein in protein_input.csv
-        if not(("partner_a" in line) or ("IFNA1" in line) or ("HLA" in line)):
+        
+        #TODO: remove the 'and' clause by incorporating small molecule annotation
+        if not(("partner_a" in line) or ("IFNA1" in line) or ("HLA" in line) or ("Type_III_IFNR" in line) or (("LipoxinA4_byALOX5,Q9Y271" in line) and ("Q9Y271" in line))):
             line=line.rstrip()
             l=line.split(",")
             
@@ -197,7 +199,7 @@ with open(cpdb_inter) as f:
 #print(len(all_interactions))    
 #print(unclearReceptors)
 
-print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\tsource_db\tsource_transmembrane\tsource_peripheral\tsource_secreted\tsource_integrin\tsource_other\tsource_other_desc\tsource_Small_Molecule\ttarget_transmembrane\ttarget_peripheral\ttarget_secreted\ttarget_integrin\ttarget_other\ttarget_other_desc\ttarget_Small_Molecule")
+print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\tdatabase\tsource_transmembrane\tsource_peripheral\tsource_secreted\tsource_integrin\tsource_other\tsource_other_desc\tsource_Small_Molecule\ttarget_transmembrane\ttarget_peripheral\ttarget_secreted\ttarget_integrin\ttarget_other\ttarget_other_desc\ttarget_Small_Molecule")
 source_db="CellPhoneDB_v4"
 pathway="na"
 annotation="na"

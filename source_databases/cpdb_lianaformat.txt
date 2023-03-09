@@ -281,7 +281,6 @@ DPEP3	CYSLTR1	Q9H4B8	Q9Y271	CellPhoneDB_v4	False	False	False	False	False		na	Tru
 ALOX12	FPR2	P18054	P25090	CellPhoneDB_v4	False	False	False	False	False		na	True	False	False	False	False		na
 ALOX12	CYSLTR1	P18054	Q9Y271	CellPhoneDB_v4	False	False	False	False	False		na	True	False	False	False	False		na
 COMPLEX:ALOX5_ALOX5AP_LTC4S	FPR2	COMPLEX:P09917_P20292_Q16873	P25090	CellPhoneDB_v4	False	False	False	False	False		na	True	False	False	False	False		na
-COMPLEX:ALOX5_ALOX5AP_LTC4S	CYSLTR1	COMPLEX:P09917_P20292_Q16873	Q9Y271	CellPhoneDB_v4	False	False	False	False	False		na	True	False	False	False	False		na
 ERVH48-1	SLC1A5	M5A8F1	Q15758	CellPhoneDB_v4	False	False	True	False	True	retrovirus	na	True	False	False	False	False		na
 AMH	COMPLEX:BMPR1A_AMHR2	P03971	COMPLEX:P36894_Q16671	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 AMH	COMPLEX:BMPR1B_AMHR2	P03971	COMPLEX:O00238_Q16671	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
@@ -1234,10 +1233,7 @@ ADM2	COMPLEX:RAMP2_CALCRL	Q7Z4H4	COMPLEX:O60895_Q16602	CellPhoneDB_v4	False	Fals
 ADM2	COMPLEX:RAMP3_CALCRL_GPER1	Q7Z4H4	COMPLEX:O60896_Q16602_Q99527	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 IFNE	ADGRV1	Q86WN2	Q8WXG9	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 IFNE	COMPLEX:IFNAR1_IFNAR2	Q86WN2	COMPLEX:P17181_P48551	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
-IFNL1	COMPLEX:IL10RB_IFNLR1	Q8IU54	COMPLEX:Q08334_Q8IU57	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 FAM3C	ADGRG5	Q92520	Q8IZF4	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
-IFNL3	COMPLEX:IL10RB_IFNLR1	Q8IZI9	COMPLEX:Q08334_Q8IU57	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
-IFNL2	COMPLEX:IL10RB_IFNLR1	Q8IZJ0	COMPLEX:Q08334_Q8IU57	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 NTN4	UNC5B	Q9HB63	Q8IZJ1	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 PROK2	PROKR2	Q9HC23	Q8NFJ6	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
 CCL4L2	GPR152	Q8NHW4	Q8TDT2	CellPhoneDB_v4	False	False	True	False	False		na	True	False	False	False	False		na
