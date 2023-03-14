@@ -32,16 +32,16 @@ def interactionExists(interactions,new):
 
 
 ##For debugging in spyder
-git_dir="/home/engelhardt/bioinf/InterfaceProject/CCI/ViennaCCCdb/"
-liana_data=git_dir+"source_databases/liana-db_0.1.7.txt"
-cpdb_data=git_dir+"source_databases/cpdb_lianaformat.txt"
-mihaela_data=git_dir+"source_databases/customData_lianaformat.txt"
+#git_dir="/home/engelhardt/bioinf/InterfaceProject/CCI/ViennaCCCdb/"
+#liana_data=git_dir+"source_databases/liana-db_0.1.7.txt"
+#cpdb_data=git_dir+"source_databases/cpdb_lianaformat.txt"
+#mihaela_data=git_dir+"source_databases/customData_lianaformat.txt"
 
 ##Uncomment these for productive work
-# liana_data=sys.argv[1]
-# cpdb_data=sys.argv[2]
-# mihaela_data=sys.argv[3]
-# conversion_file=sys.argv[4]
+liana_data=sys.argv[1]
+cpdb_data=sys.argv[2]
+mihaela_data=sys.argv[3]
+#conversion_file=sys.argv[4]
 
 #datafiles
 

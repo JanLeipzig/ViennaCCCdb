@@ -10,11 +10,13 @@ Extract liana consensus database from https://github.com/saezlab/liana
 ```
 library(liana)
 consensus<-select_resource(c('Consensus'))
-write.table(consensus, file="liana-db_0.1.7.txt")
+write.table(consensus, file="liana-db_0.1.12.txt")
 ```
 
 Download CellPhoneDB v4 from https://github.com/ventolab/CellphoneDB
 - Find the database in your home in .cpdb/releases/
+
+Download CellPhoneDB v4.1 from https://github.com/ventolab/cellphonedb-data/releases/tag/v4.1.0
 
 Download additional interactions originally from Pavlicev et
 al. (2017) and curated by D. Stadtmauer from
@@ -24,12 +26,13 @@ https://gitlab.com/wandplabs/ligrec-enzymes
 ```
 python scripts/convert_cpdb_to_LianaFormat.py source_databases/cpdb_v4.0.0/ > cpdb_lianaformat.txt
 
-python scripts/convert_customData_to_LianaFormat.py source_databases/interaction_input_CellChatDB.csv source_databases/gene_conversion-AH104864.csv > customData_lianaformat.txt
+python scripts/convert_customData_to_LianaFormat.py source_databases/interaction_input_CellChatDB.csv > customData_lianaformat.txt
 ```
 
-### Create combined database
+### Create "raw version" of combined database
+This file is the basic input necessary for cell-cell interaction pipelines. Annotation of these interactions is stored in ViennaCCCdb_annotation.csv
 ```
-python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.7.txt source_databases/cpdb_lianaformat.txt source_databases/customData_lianaformat.txt source_databases/gene_conversion-AH104864.csv > ViennaCCCdb.csv
+python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.12.txt source_databases/cpdb_lianaformat.txt source_databases/customData_lianaformat.txt > ViennaCCCdb_raw.csv
 ```
 
 ## Notes
