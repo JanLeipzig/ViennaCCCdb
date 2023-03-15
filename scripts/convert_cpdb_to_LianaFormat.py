@@ -58,16 +58,18 @@ with open(cpdb_complex) as f:
             
             #Cpdb complexes have up t to four proteins, this loop checks the respecitive columns
             #All available proteins will be added to proteinParts list
-            for i in range(4):
+            for i in range(5):
                 comp=l[i+1]
                 if(comp!=""):
                     proteinParts.append(comp)
             proteinParts.sort()
             
+           
+            
             #Dictionary with key:complex_name(str), value: proteinParts(list) is filled
             cpdb_complex_dict[l[0]]=proteinParts
             #similiar dict but saves if the complex is a receptor True/False
-            cpdb_complex_dict_rec[l[0]]=l[10]
+            cpdb_complex_dict_rec[l[0]]=l[11]
             
             annotation="na"
             if("_by" in l[0]):
@@ -76,7 +78,7 @@ with open(cpdb_complex) as f:
                 #print(annotation)
             
             #transmembrane,peripheral,secreted,integrin,other,other_desc
-            cpdb_anno[l[0]]=[l[5],l[6],l[7],l[12],l[13],l[14],annotation]
+            cpdb_anno[l[0]]=[l[6],l[7],l[8],l[13],l[14],l[15],annotation]
             
  
 #sys.exit()
@@ -104,8 +106,8 @@ with open(cpdb_protein) as f:
         
         if not("protein_name" in line):
             cpdb_simple_dict_rec[l[0]]=l[7]            
-            #transmembrane,peripheral,secreted,integrin,other,other_desc
-            cpdb_anno[l[0]]=[l[2],l[3],l[4],l[9],l[10],l[11],"na"]
+            #transmembrane,peripheral,secreted,integrin,other,other_desc,"na" - small-molecule
+            cpdb_anno[l[0]]=[l[2],l[3],l[4],l[9],l[12],l[13],"na"]
 
 #parses cpdb_v4.0.0/data/gene_input_all.csv to get uniprot to gene_name mapping
 cpdb_genenames={}
@@ -134,8 +136,8 @@ with open(cpdb_inter) as f:
             line=line.rstrip()
             l=line.split(",")
             
-            proteinA=l[0]
-            proteinB=l[1]
+            proteinA=l[1]
+            proteinB=l[2]
 
             #Presumably database error in cpdbv4
             #Gene name is given instead of uniprot-id

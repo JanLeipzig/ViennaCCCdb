@@ -90,7 +90,7 @@ with open(liana_data) as f:
             L_str="_".join(L)
             R_str="_".join(R)
             
-            interactions_db[L_str+"-"+R_str]="Liana_v0.1.7"           
+            interactions_db[L_str+"-"+R_str]="Liana_v0.1.12"           
             
             L_uni=l[1][1:-1]
             R_uni=l[2][1:-1]
@@ -156,9 +156,9 @@ with open(cpdb_data) as f:
             R_str="_".join(R)
       
             if(L_str+"-"+R_str in interactions_db):
-                interactions_db[L_str+"-"+R_str]+=";Cpdb_v4"
+                interactions_db[L_str+"-"+R_str]+=";Cpdb_v4.1"
             else:
-                interactions_db[L_str+"-"+R_str]="Cpdb_v4"
+                interactions_db[L_str+"-"+R_str]="Cpdb_v4.1"
                 
                 
             L_uni=l[2][:]
