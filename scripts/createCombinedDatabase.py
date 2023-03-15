@@ -333,7 +333,7 @@ with open(mihaela_data) as f:
 
 #Print the combined database
 #print("source\ttarget\tsource_genesymbol\ttarget_genesymbol")
-print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\t\tdatabase")
+print("ligand\treceptor\tligand_uniprot\treceptor_uniprot\t\tdatabase")
 
 for i,inter in enumerate(all_interactions):
     L=inter[0]
@@ -360,7 +360,8 @@ for i,inter in enumerate(all_interactions):
         #print(L[0],end="\t")
         line+=L[0]+"\t"
     else:
-        line+="COMPLEX:"+"_".join(L)+"\t"
+        #line+="COMPLEX:"+"_".join(L)+"\t"
+        line+="_".join(L)+"\t"
         #print("COMPLEX:"+"_".join(L),end="\t")
         
     if(len(R)==1):
@@ -368,7 +369,8 @@ for i,inter in enumerate(all_interactions):
         line+=R[0]+"\t"        
     else:
         #print("COMPLEX:"+"_".join(R),end="\t")
-        line+="COMPLEX:"+"_".join(R)+"\t"
+        #line+="COMPLEX:"+"_".join(R)+"\t"
+        line+="_".join(R)+"\t"
         
     if(type(L_uni)== str):
         line+=L_uni+"\t"
