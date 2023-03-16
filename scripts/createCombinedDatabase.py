@@ -333,7 +333,7 @@ with open(mihaela_data) as f:
 
 #Print the combined database
 #print("source\ttarget\tsource_genesymbol\ttarget_genesymbol")
-print("ligand\treceptor\tligand_uniprot\treceptor_uniprot\t\tdatabase")
+print("ligand\treceptor\tligand_uniprot\treceptor_uniprot\tdatabase")
 
 for i,inter in enumerate(all_interactions):
     L=inter[0]
