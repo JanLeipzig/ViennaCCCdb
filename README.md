@@ -13,9 +13,6 @@ consensus<-select_resource(c('Consensus'))
 write.table(consensus, file="liana-db_0.1.12.txt")
 ```
 
-Download CellPhoneDB v4 from https://github.com/ventolab/CellphoneDB
-- Find the database in your home in .cpdb/releases/
-
 Download CellPhoneDB v4.1 from https://github.com/ventolab/cellphonedb-data/releases/tag/v4.1.0
 
 Download additional interactions originally from Pavlicev et
@@ -24,7 +21,7 @@ https://gitlab.com/wandplabs/ligrec-enzymes
 
 ### Convert to liana format
 ```
-python scripts/convert_cpdb_to_LianaFormat.py source_databases/cpdb_v4.0.0/ > cpdb_lianaformat.txt
+python scripts/convert_cpdb_to_LianaFormat.py source_databases/cpdb_v4.1.0/ > cpdb_lianaformat.txt
 
 python scripts/convert_customData_to_LianaFormat.py source_databases/interaction_input_CellChatDB.csv > customData_lianaformat.txt
 ```
