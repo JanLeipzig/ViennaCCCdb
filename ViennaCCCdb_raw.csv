@@ -1,4 +1,4 @@
-ligand  receptor  ligand_uniprot  receptor_uniprot  database
+ligand	receptor	ligand_uniprot	receptor_uniprot	database
 LGALS9	PTPRC	O00182	P08575	Liana_v0.1.12
 LGALS9	MET	O00182	P08581	Liana_v0.1.12
 LGALS9	CD44	O00182	P16070	Liana_v0.1.12
