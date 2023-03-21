@@ -39,6 +39,8 @@ cpdb_interactions={}
 all_interactions=[]
 
 unclearReceptors=0
+lrReceptors=0
+rlReceptors=0
 #parses cpdb_v4.0.0/data/complex_input.csv to get information
 #about the complexes stored in cpdb
 #cpdb_complex_dict - complex_name : complex_proteinParts
@@ -184,22 +186,26 @@ with open(cpdb_inter) as f:
             #R-L
             if(A_rec=="True" and B_rec=="False"):
                 #pass
+                rlReceptors+=1
                 all_interactions.append([B,A])
-            elif(B_rec=="True" and A_rec=="False"):
+            elif(A_rec=="False" and B_rec=="True"):
                 #pass
+                lrReceptors+=1
                 all_interactions.append([A,B])
             else:
                 #pass
                 unclearReceptors+=1
+                #print("Unclear",A,B)
  
 #TODO: Small molecule interactions are missing!!! 02/15/2023 CONTINUE HERE
     
  
-##Summary statistics                
-#Should be 2171 interactions
-#858 interactions are not used due to unclear receptor status
+##Summary statistics - TODO
+#Should be ??? interactions
+#??? interactions are not used due to unclear receptor status
 #print(len(all_interactions))    
 #print(unclearReceptors)
+
 
 print("source_genesymbol\ttarget_genesymbol\tsource_uniprot\ttarget_uniprot\tdatabase\tsource_transmembrane\tsource_peripheral\tsource_secreted\tsource_integrin\tsource_other\tsource_other_desc\tsource_Small_Molecule\ttarget_transmembrane\ttarget_peripheral\ttarget_secreted\ttarget_integrin\ttarget_other\ttarget_other_desc\ttarget_Small_Molecule")
 source_db="CellPhoneDB_v4"
