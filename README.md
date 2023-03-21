@@ -21,15 +21,15 @@ https://gitlab.com/wandplabs/ligrec-enzymes
 
 ### Convert to liana format
 ```
-python scripts/convert_cpdb_to_LianaFormat.py source_databases/cpdb_v4.1.0/ > cpdb_lianaformat.txt
+python scripts/convert_cpdb_to_LianaFormat.py source_databases/cpdb_v4.1.0/ > source_databases/cpdb_lianaformat_4.1.txt
 
-python scripts/convert_customData_to_LianaFormat.py source_databases/interaction_input_CellChatDB.csv > customData_lianaformat.txt
+python scripts/convert_customData_to_LianaFormat.py source_databases/interaction_input_CellChatDB.csv > source_databases/customData_lianaformat.txt
 ```
 
 ### Create "raw version" of combined database
 This file is the basic input necessary for cell-cell interaction pipelines. Annotation of these interactions is stored in ViennaCCCdb_annotation.csv
 ```
-python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.12.txt source_databases/cpdb_lianaformat.txt source_databases/customData_lianaformat.txt > ViennaCCCdb_raw.csv
+python scripts/createCombinedDatabase.py source_databases/liana-db_0.1.12.txt source_databases/cpdb_lianaformat_4.1.txt source_databases/customData_lianaformat.txt > ViennaCCCdb_raw.csv
 ```
 
 ## Notes
